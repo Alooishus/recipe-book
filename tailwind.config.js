@@ -14,6 +14,9 @@ module.exports = {
                 playfair: ['Playfair Display'],
                 marker: ['Permanent Marker']
             },
+            backgroundImage: {
+                'salt-banner': "url('/storage/Salt.jpg')"
+            }
         },
     },
 

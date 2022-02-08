@@ -29,6 +29,7 @@ WHERE IS THIS
 
             <!-- Page Content -->
             <main>
+                WHERE IS THIS
                 {{ $slot }}
             </main>
         </div>

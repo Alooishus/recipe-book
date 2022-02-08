@@ -18,6 +18,7 @@ use App\Http\Controllers\PagesController;
 //     return view('index');
 // });
 
+
 Route::get('/', [PagesController::class, 'index']);
 
 Route::get('/dashboard', function () {

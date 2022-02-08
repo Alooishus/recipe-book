@@ -1,28 +1,26 @@
-{{-- <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Document</title>
-</head>
-<body>
-    @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+@extends('layouts.main')
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
+@section('content')
+    <div class="mx-5">
+        <div class="grid grid-cols-4 gap-10 py-8">
+            <div class=" rounded overflow-hidden shadow-md hover:shadow-xl relative">
+                <div class=" flex items-center space-x-1 bg-gray-100 font-semibold rounded-full text-sm p-1 absolute mt-1 ml-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <polyline points="12 7 12 12 15 15"></polyline>
+                     </svg>
+                    <span>25 mins</span>
                 </div>
-            @endif
-
-        </body>
-        <div class="bg-blue-700 h-24 w-24 mt-9 ml-5 font-playfair">Hi & Bye</div>
-</html> --}}
-
-@extends('layouts.app')
+                <img class="object-cover h-36 w-full" src="{{ asset('storage/carnitas.jpg') }}" alt="">
+                <div>
+                    <span class="font-bold text-2xl">Carnitas</span>
+                    <span class="block text-gray-500 text-sm">Recipe By: Mike Kolesar</span>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+    </div>
+@endsection
