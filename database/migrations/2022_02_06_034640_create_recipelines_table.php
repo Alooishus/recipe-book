@@ -18,6 +18,8 @@ class CreateRecipelinesTable extends Migration
             $table->foreignId('unit_id')->constrained()->onDelete('cascade');
             $table->foreignId('quantity_id')->constrained()->onDelete('cascade');
             $table->foreignId('ingredient_id')->constrained()->onDelete('cascade');
+            $table->foreignId('images_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

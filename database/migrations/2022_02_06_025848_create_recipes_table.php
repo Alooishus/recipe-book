@@ -17,9 +17,11 @@ class CreateRecipesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('method');
-            $table->string('total_time');
+            $table->integer('total_time');
             $table->string('difficulty');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('image_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

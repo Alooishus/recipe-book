@@ -16,6 +16,7 @@ class CreateQuantitiesTable extends Migration
         Schema::create('quantities', function (Blueprint $table) {
             $table->id();
             $table->float('amount', 6, 2);
+            $table->timestamps();
         });
     }
 

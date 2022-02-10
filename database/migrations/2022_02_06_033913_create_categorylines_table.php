@@ -16,6 +16,7 @@ class CreateCategorylinesTable extends Migration
         Schema::create('categorylines', function (Blueprint $table) {
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

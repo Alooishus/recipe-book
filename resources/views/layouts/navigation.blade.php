@@ -13,9 +13,24 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Favorites') }}
                     </x-nav-link>
                 </div>
+                
+                @if (Auth::user()->isAdmin == 1)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('recipe.create')" :active="request()->routeIs('recipe.create')">
+                            {{ __('Insert') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('modify')" :active="request()->routeIs('modify')">
+                            {{ __('Modify') }}
+                        </x-nav-link>
+                    </div>
+                    
+                @endif
+            
             </div>
 
             <!-- Settings Dropdown -->

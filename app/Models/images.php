@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class recipeline extends Model
+class images extends Model
 {
     use HasFactory;
 
-    protected $table = 'recipelines';
+    protected $table = 'images';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = ['image_path'];
 }
