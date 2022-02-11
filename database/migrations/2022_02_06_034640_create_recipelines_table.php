@@ -15,8 +15,8 @@ class CreateRecipelinesTable extends Migration
     {
         Schema::create('recipelines', function (Blueprint $table) {
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
+            $table->float('quantity', 6, 2);
             $table->foreignId('unit_id')->constrained()->onDelete('cascade');
-            $table->foreignId('quantity_id')->constrained()->onDelete('cascade');
             $table->foreignId('ingredient_id')->constrained()->onDelete('cascade');
             $table->foreignId('images_id')->constrained()->onDelete('cascade');
             $table->timestamps();

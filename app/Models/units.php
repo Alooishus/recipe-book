@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class units extends Model
 {
     use HasFactory;
+
+    protected $table = 'units';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'name'
+    ];
 }

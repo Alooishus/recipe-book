@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -22,15 +26,19 @@ use App\Http\Controllers\RecipeController;
 
 
 Route::get('/', [PagesController::class, 'index']);
-//Route::get('/additem', [PagesController::class, 'additem']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('recipe', RecipeController::class);
-Route::get('/', [RecipeController::class, 'create'])->name('recipe.create');
-Route::post('/', [RecipeController::class, 'store'])->name('recipe.store');
+//Route::resource('recipe', RecipeController::class);
+//Route::resource('ingredient', IngredientController::class);
+Route::resources([
+    'recipe' => RecipeController::class,
+    'ingredient' => IngredientController::class,
+    'unit' => UnitController::class,
+    'category' => CategoryController::class
+]);
 
 
 Route::get('/modify', function () {

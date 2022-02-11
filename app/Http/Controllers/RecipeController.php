@@ -8,8 +8,8 @@ use App\Models\units;
 use App\Models\recipes;
 use App\Models\recipeline;
 use App\Models\ingredients;
-use App\Models\quantities;
 use App\Models\images;
+use App\Models\categories;
 
 class RecipeController extends Controller
 {
@@ -42,7 +42,8 @@ class RecipeController extends Controller
     {
         $units = units::all();
         $ingredients = ingredients::all();
-        return view('recipes.insert', ['units'=>$units, 'ingredients'=>$ingredients]);
+        $categories = categories::all();
+        return view('recipes.insert', ['units'=>$units, 'ingredients'=>$ingredients, 'categories'=>$categories]);
     }
 
     /**
@@ -63,10 +64,12 @@ class RecipeController extends Controller
         $picture = $request->file('picture');
         $cardImageID = '';
         $userID = Auth::id();
-
-        $recipe = new recipes();
-        $rLine = new recipeline();
-
+        $methodString = '';
+        foreach($method as $m){
+            $methodString .= '<h2>'.$m.'</h2>';
+        }
+        echo $methodString;
+        dd($methodString);
         // Upload card image to images table and get the ID for the recipe table
         if($cardImage){
             // Add better validation for file upload as not even sure this is working
@@ -98,7 +101,10 @@ class RecipeController extends Controller
                 array_push($pictureArr, $image->id);
             }
         }
-
+        
+        $recipe = new recipes();
+        $recipe->name = $title;
+        $rLine = new recipeline();
 
         
 
