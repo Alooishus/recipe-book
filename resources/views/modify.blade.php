@@ -17,4 +17,4 @@
     </div>
 </x-app-layout>
 
-{{-- Move this page to the recipes directory --}}
+{{-- Move this page to the recipes directory and change the route to use the recipe resource route?--}}

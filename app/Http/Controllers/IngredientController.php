@@ -51,7 +51,6 @@ class IngredientController extends Controller
             $ingredient = ingredients::updateOrCreate(
                 ['name' => request('newIngredient')]
             );
-            
             return redirect('/recipe/create')->with('status', 'Ingredient Added!');
         }else{
             return 'error message';

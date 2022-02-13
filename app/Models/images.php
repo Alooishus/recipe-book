@@ -14,4 +14,6 @@ class images extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['image_path'];
+
+   
 }

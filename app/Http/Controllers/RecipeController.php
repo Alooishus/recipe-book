@@ -10,6 +10,7 @@ use App\Models\recipeline;
 use App\Models\ingredients;
 use App\Models\images;
 use App\Models\categories;
+use App\Models\imageline;
 
 class RecipeController extends Controller
 {
@@ -30,7 +31,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -56,61 +57,89 @@ class RecipeController extends Controller
     {   
         $title = $request->input('title');
         $difficulty = $request->input('difficulty');
+        $total_time = $request->input('hours') .'-'. $request->input('minutes');
         $ingredient = $request->input('ingredient');
         $quantity = $request->input('quantity');
         $unit = $request->input('unit');
         $method = $request->input('method');
-        $cardImage = $request->file('cardImage');
-        $picture = $request->file('picture');
-        $cardImageID = '';
         $userID = Auth::id();
         $methodString = '';
         foreach($method as $m){
-            $methodString .= '<h2>'.$m.'</h2>';
+            $methodString .= '<p>'.$m.'</p>';
         }
-        echo $methodString;
-        dd($methodString);
-        // Upload card image to images table and get the ID for the recipe table
-        if($cardImage){
-            // Add better validation for file upload as not even sure this is working
+        
+        // Check if there is a card image file otherwise use the default
+        if($request->file('cardImage')){
+            
+            // Validator and Upload for recipe card homepage image
             $request->validate([
-                'cardImage' => 'mimes:png,jpg,jpeg'
+                'cardImage.*' => 'mimes:doc,pdf,docx,zip,jpeg,png,jpg,gif,svg',
             ]);
-
-            $newCardImageName = time() . '-' . $title . '.' . $cardImage->extension();
-            $cardImage->move(public_path('images'), $newCardImageName);
-
-            $image = new images();
-            $image->image_path = $newCardImageName;
-            $image->save();
-            $cardImageID = $image->id;
+            // check if file exist 
+            if($request->hasFile('cardImage')){
+                $cardImage = $request->file('cardImage');
+                $newCardImageName = time() . '-' . $title . '.' . $cardImage->extension();
+                $cardImage->storeAs('public/',$newCardImageName);
+            }
+        }else{
+            $newCardImageName = 'Fam 2021.jpg';
         }
+        
+        $image = new images();
+        $image->image_path = $newCardImageName;
+        $image->save();
+        $cardImageID = $image->id;
 
-        // If we are uploading additional pictures, check how many, upload to images and save ID's for use in recipe line table
-        if($picture){
+        $recipe = new recipes();
+        $recipe->name = $title;
+        $recipe->method = $methodString;
+        $recipe->total_time = $total_time;
+        $recipe->difficulty = $difficulty;
+        $recipe->user_id = $userID;
+        $recipe->image_id = $cardImageID;
+        $recipe->save();
+        $recipeID = $recipe->id;
+
+        // Validator and Upload for pictures that will appear on the the actual recipe
+       if($request->file('picture')){
             // Add validation for files
-            $count = count($picture);
-            $pictureArr = [];
-            for($i=0;$i<$count;$i++){
+
+            $request->validate([
+                'picture.*' => 'mimes:doc,pdf,docx,zip,jpeg,png,jpg,gif,svg',
+            ]);
+            
+            // check if file exist 
+            if($request->hasFile('picture')){
+                $picture = $request->file('picture');
+            }
+            $pictureCount = count($picture);
+            //$pictureArr = [];
+            for($i=0;$i<$pictureCount;$i++){
                 $newPicName = time() . '-' . $picture[$i]->getClientOriginalName(). '.' . $picture[$i]->extension();
-                $picture[$i]->move(public_path('images'), $newPicName);
+                $picture[$i]->storeAs('public/',$newPicName);
 
                 $image = new images();
                 $image->image_path = $newPicName;
                 $image->save();
-                array_push($pictureArr, $image->id);
+                
+                $imageLine = new imageline();
+                $imageLine->recipe_id = $recipeID;
+                $imageLine->image_id = $image->id;
+                $imageLine->save();
             }
         }
         
-        $recipe = new recipes();
-        $recipe->name = $title;
-        $rLine = new recipeline();
+        $lineCount = count($ingredient);
+        for($i=0;$i<$lineCount;$i++){
+            $rLine = new recipeline();
+            $rLine->recipe_id = $recipeID;
+            $rLine->quantity = $quantity[$i];
+            $rLine->unit_id = $unit[$i];
+            $rLine->ingredient_id = $ingredient[$i];
+            $rLine->save();
+        }
 
-        
-
-
-
-        return 'end';
+        return redirect('/recipe/create')->with('status', 'Recipe Added!');
     }
 
     /**

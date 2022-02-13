@@ -19,13 +19,14 @@ use App\Http\Controllers\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-
 Route::get('/', [PagesController::class, 'index']);
+
+Route::resources([
+    'recipe' => RecipeController::class,
+    'ingredient' => IngredientController::class,
+    'unit' => UnitController::class,
+    'category' => CategoryController::class
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,12 +34,7 @@ Route::get('/dashboard', function () {
 
 //Route::resource('recipe', RecipeController::class);
 //Route::resource('ingredient', IngredientController::class);
-Route::resources([
-    'recipe' => RecipeController::class,
-    'ingredient' => IngredientController::class,
-    'unit' => UnitController::class,
-    'category' => CategoryController::class
-]);
+
 
 
 Route::get('/modify', function () {

@@ -40,7 +40,7 @@
                             <div class="flex space-x-2 mt-2 md:mt-0">
                                 <div class="w-full">
                                     <label class="lbl" for="hours">Hours:</label>
-                                    <select name="" id="" class="form-input">
+                                    <select name="hours" class="form-input">
                                         @for ($i = 0; $i < 10; $i++)
                                         <option value="{{ sprintf("%02d", $i) }}">{{ sprintf("%02d", $i) }}</option>
                                         @endfor
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="w-full">
                                     <label class="lbl" for="minutes">Minutes: </label>
-                                    <select name="" id="" class="form-input">
+                                    <select name="minutes" class="form-input">
                                         @for ($i = 0; $i < 60; $i=$i+5)
                                             <option value="{{ sprintf("%02d", $i) }}" {{ $i==30 ? 'selected' : '' }}>{{ sprintf("%02d", $i) }}</option>
                                         @endfor
@@ -88,7 +88,7 @@
                                     <select name="unit[]" class="form-input">
                                         <option value="" selected disabled></option>
                                         @foreach ($units as $unit)
-                                            <option value="{{ $unit->name }}">{{ $unit->name }}</option>
+                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -100,6 +100,7 @@
                         </div>
                         <div class="flex items-center justify-center">
                             <div id="methodParent">
+                                {{-- Style the method strings in RecipeController.php --}}
                                 <label class="lbl" for="method">Method</label>
                                 <textarea class="form-input" name="method[]" id="" cols="100" rows="2"></textarea>
                             </div>
@@ -235,7 +236,7 @@ clickIngredient.addEventListener('click', function (event) {
                                         <select name="unit[]" class="form-input">
                                             <option value="" selected disabled></option>
                                             @foreach ($units as $unit)
-                                                <option value="{{ $unit->name }}">{{ $unit->name }}</option>
+                                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

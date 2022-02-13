@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipelinesTable extends Migration
+class CreateImagelinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateRecipelinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipelines', function (Blueprint $table) {
+        Schema::create('imagelines', function (Blueprint $table) {
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
-            $table->float('quantity', 6, 2);
-            $table->foreignId('unit_id')->constrained()->onDelete('cascade');
-            $table->foreignId('ingredient_id')->constrained()->onDelete('cascade');
+            $table->foreignId('image_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateRecipelinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipelines');
+        Schema::dropIfExists('imagelines');
     }
 }
