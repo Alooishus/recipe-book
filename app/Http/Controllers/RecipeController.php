@@ -10,6 +10,7 @@ use App\Models\recipeline;
 use App\Models\ingredients;
 use App\Models\images;
 use App\Models\categories;
+use App\Models\categoryline;
 use App\Models\imageline;
 
 class RecipeController extends Controller
@@ -62,10 +63,13 @@ class RecipeController extends Controller
         $quantity = $request->input('quantity');
         $unit = $request->input('unit');
         $method = $request->input('method');
+        $tags = $request->input('category');
         $userID = Auth::id();
         $methodString = '';
+        $partCounter = 1;
         foreach($method as $m){
-            $methodString .= '<p>'.$m.'</p>';
+            $methodString .= "<h1 class='font-semibold text-xl text-gray-800 leading-tight'>Part ".$partCounter."</h1>". $m;
+            $partCounter++;
         }
         
         // Check if there is a card image file otherwise use the default
@@ -100,6 +104,17 @@ class RecipeController extends Controller
         $recipe->save();
         $recipeID = $recipe->id;
 
+        // If categories are choosen, add them to category line table
+        if($tags){
+            //$catCount = count($tags);
+            for($i=0;$i<count($tags);$i++){
+                $category = new categoryline();
+                $category->recipe_id = $recipeID;
+                $category->category_id = $tags[$i];
+                $category->save();
+            }
+        }
+
         // Validator and Upload for pictures that will appear on the the actual recipe
        if($request->file('picture')){
             // Add validation for files
@@ -113,7 +128,6 @@ class RecipeController extends Controller
                 $picture = $request->file('picture');
             }
             $pictureCount = count($picture);
-            //$pictureArr = [];
             for($i=0;$i<$pictureCount;$i++){
                 $newPicName = time() . '-' . $picture[$i]->getClientOriginalName(). '.' . $picture[$i]->extension();
                 $picture[$i]->storeAs('public/',$newPicName);

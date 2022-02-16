@@ -57,7 +57,7 @@
                             </div>
                             <div>
                                 <label class="lbl" for="cardImage">Card Image </label>
-                                <input type="file" class="form-input text-sm" id="cardImage" name="cardImage">
+                                <input type="file" class="form-input text-sm" id="cardImage" name="cardImage"  capture="environment" accept="image/*">
                             </div>
                         </div>
 {{-- Recipe Card Details --}}
@@ -102,7 +102,7 @@
                             <div id="methodParent">
                                 {{-- Style the method strings in RecipeController.php --}}
                                 <label class="lbl" for="method">Method</label>
-                                <textarea class="form-input" name="method[]" id="" cols="100" rows="2"></textarea>
+                                <textarea class="form-input" name="method[]" id="" cols="100" rows="2" style="white-space: pre-wrap"></textarea>
                             </div>
                             <div class="mt-4">
                                 <button class="btn-more ml-3" type="button" id="addMethod">+</button>
@@ -137,7 +137,7 @@
                         <div class="flex items-center justify-center">
                             <div id="pictureParent">
                                 <label class="lbl">Additional Images </label>
-                                <input type="file" class="form-input text-sm" name="picture[]">
+                                <input type="file" class="form-input text-sm" name="picture[]"  capture="environment" accept="image/*">
                             </div>
                             <div class="mt-7">
                                 <button class="btn-more ml-3" type="button" id="addPicture">+</button>
@@ -209,7 +209,7 @@ let clickCategory = document.querySelector('#addCategory');
 
 clickMethod.addEventListener('click', function (event) {
     let newTextArea = document.createElement('div');
-    newTextArea.innerHTML = '<textarea class="form-input" name="method[]" cols="100" rows="2"></textarea>';
+    newTextArea.innerHTML = '<textarea class="form-input" name="method[]" cols="100" rows="2" style="white-space: pre-wrap"></textarea>';
     document.getElementById("methodParent").appendChild(newTextArea);
 });
 
@@ -248,7 +248,7 @@ clickIngredient.addEventListener('click', function (event) {
 
 clickPicture.addEventListener('click', function (event) {
     let newPicture = document.createElement('div');
-    newPicture.innerHTML = '<input type="file" class="form-input mt-2 text-sm" name="picture[]">';
+    newPicture.innerHTML = '<input type="file" class="form-input mt-2 text-sm" name="picture[]"  capture="environment" accept="image/*">';
     document.getElementById("pictureParent").appendChild(newPicture);
 });
 

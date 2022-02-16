@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class categoryline extends Model
 {
     use HasFactory;
+
+    protected $table = 'categorylines';
+    protected $fillable = [
+        'recipe_id',
+        'category_id'
+    ];
 }

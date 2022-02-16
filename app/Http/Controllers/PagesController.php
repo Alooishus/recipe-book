@@ -14,4 +14,8 @@ class PagesController extends Controller
             ->get();
        return view('index', compact('recipes')); 
     }
+
+    public function recipePage() {
+        return view('recipes.index');
+    }
 }
