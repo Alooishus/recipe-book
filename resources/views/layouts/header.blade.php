@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div>
-                <input type="text" placeholder="Searchbar">
+                <input type="text" placeholder="Coming Soon: Searchbar">
             </div>
             @if (Route::has('login'))
                 <div class="flex items-center mr-4">

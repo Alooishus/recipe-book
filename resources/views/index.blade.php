@@ -10,7 +10,7 @@
     </div>
         <div class="grid md:grid-cols-4 gap-10 py-8">
             @foreach ($recipes as $item)
-           {{-- <pre class="font-playfair">{{ $item->method }}</pre> --}}
+                <a href="{{ route('page', $item->id) }}">
                 <div class="rounded overflow-hidden shadow-md hover:shadow-xl relative">
                     <div class="flex items-center space-x-1 bg-gray-100 font-semibold rounded-full text-sm p-1 absolute mt-1 ml-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -29,6 +29,7 @@
                         <span class="block text-gray-500 text-sm">Recipe By: {{ $item->user_name }}</span>
                     </div>
                 </div>
+            </a>
             @endforeach
 
         </div>

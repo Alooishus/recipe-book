@@ -20,7 +20,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 Route::get('/', [PagesController::class, 'index']);
-Route::get('/page', [PagesController::class, 'recipePage']);
+Route::get('/recipe/{id}', [PagesController::class, 'recipePage'])->name('page');
 
 Route::resources([
     'recipe' => RecipeController::class,
