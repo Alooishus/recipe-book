@@ -34,6 +34,6 @@ class PagesController extends Controller
         
         //$images = DB::table('images')
             
-        return view('recipes.index', compact('recipe', 'lines'));
+        return view('recipes.page', compact('recipe', 'lines'));
     }
 }

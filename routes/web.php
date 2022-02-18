@@ -20,7 +20,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 Route::get('/', [PagesController::class, 'index']);
-Route::get('/recipe/{id}', [PagesController::class, 'recipePage'])->name('page');
+Route::get('/page/{id}', [PagesController::class, 'recipePage'])->name('page');
 
 Route::resources([
     'recipe' => RecipeController::class,
@@ -32,9 +32,6 @@ Route::resources([
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-//Route::resource('recipe', RecipeController::class);
-//Route::resource('ingredient', IngredientController::class);
 
 
 

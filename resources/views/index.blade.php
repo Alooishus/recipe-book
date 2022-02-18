@@ -23,7 +23,7 @@
                     <div class="flex items-center space-x-1 bg-green-600 rounded-full text-sm p-1 absolute right-0 mt-1 ml-1 mr-1">
                         <span>{{ $item->difficulty }}</span>
                     </div>
-                    <img class="object-cover h-36 w-full" src="{{ asset('storage/'.$item->image_path) }}" alt="">
+                    <img class="object-cover h-36 w-full" src="{{ asset('storage/public/'.$item->image_path) }}" alt="">
                     <div>
                         <span class="font-bold text-2xl">{{ $item->name }}</span>
                         <span class="block text-gray-500 text-sm">Recipe By: {{ $item->user_name }}</span>

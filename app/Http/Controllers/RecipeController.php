@@ -68,7 +68,7 @@ class RecipeController extends Controller
         $methodString = '';
         $partCounter = 1;
         foreach($method as $m){
-            $methodString .= "<h1 class='font-semibold text-xl text-gray-800 leading-tight'>Part ".$partCounter."</h1>". $m;
+            $methodString .= "Part ".$partCounter. $m;
             $partCounter++;
         }
         
