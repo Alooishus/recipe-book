@@ -2,9 +2,9 @@
 
 @section('content')
     
-<div class="flex flex-grow">
+<div class="py-6 flex flex-grow">
     <div>
-        <img class="object-cover h-36 w-full" src="{{ asset('storage/'.$recipe[0]->image_path) }}" alt="">
+        <img class="object-cover h-36 w-full" src="{{ asset('storage/public/'.$recipe[0]->image_path) }}" alt="">
 
         <div>{{  $recipe[0]->name }}</div>
         <div>{{  $recipe[0]->difficulty }}</div>

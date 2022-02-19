@@ -78,10 +78,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="flex space-x-1 mt-2 md:mt-0">
+                            <div class="flex space-x-1">
                                 <div class="">
                                     <label class="lbl">Quantity</label>
-                                    <input type="number" name="quantity[]" class="form-input">
+                                    <input type="number" name="quantity[]" class="form-input w-1/2">
                                 </div>
                                 <div class="">
                                     <label class="lbl">Unit of Measurement</label>
@@ -101,12 +101,12 @@
                         <div class="flex items-center justify-center">
                             <div id="methodParent">
                                 {{-- Style the method strings in RecipeController.php --}}
-                                <label class="lbl" for="method">Method</label>
-                                <textarea class="form-input" name="method[]" id="" cols="100" rows="2" style="white-space: pre-wrap"></textarea>
+                                <label class="lbl" for="method">Method:</label>
+                                <textarea class="form-input" name="method[]" id="" cols="100" rows="6" style="white-space: pre-wrap"></textarea>
                             </div>
-                            <div class="mt-4">
+                            {{-- <div class="mt-4">
                                 <button class="btn-more ml-3" type="button" id="addMethod">+</button>
-                            </div>
+                            </div> --}}
                         </div>
 {{-- Categories --}}
                         <div class="relative flex py-5 items-center">
@@ -124,7 +124,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mt-4">
+                            <div class="pt-7">
                                 <button class="btn-more ml-3" type="button" id="addCategory">+</button>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                     </div>
 
 
-                    <div class="flex justify-between flex-wrap px-20 space-y-4 md:space-y-0">
+                    <div class="flex justify-between flex-wrap px-20 space-y-4 md:space-y-1">
                         <form action="{{ route('ingredient.store') }}" method="POST">
                             @csrf
                             <input class="form-input w-full" type="text" name="newIngredient" placeholder="Ingredient">
@@ -201,17 +201,17 @@
 {{-- JAVASCRIPT --}}
 
 <script>
-let clickMethod = document.querySelector('#addMethod');
+///let clickMethod = document.querySelector('#addMethod');
 let clickIngredient = document.querySelector('#addIngredient');
 let clickPicture = document.querySelector('#addPicture');
 let clickCategory = document.querySelector('#addCategory');
 
 
-clickMethod.addEventListener('click', function (event) {
+/* clickMethod.addEventListener('click', function (event) {
     let newTextArea = document.createElement('div');
     newTextArea.innerHTML = '<textarea class="form-input" name="method[]" cols="100" rows="2" style="white-space: pre-wrap"></textarea>';
     document.getElementById("methodParent").appendChild(newTextArea);
-});
+}); */
 
 clickIngredient.addEventListener('click', function (event) {
     let newIngredientGroup = document.createElement('div');

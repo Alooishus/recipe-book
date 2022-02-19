@@ -65,12 +65,6 @@ class RecipeController extends Controller
         $method = $request->input('method');
         $tags = $request->input('category');
         $userID = Auth::id();
-        $methodString = '';
-        $partCounter = 1;
-        foreach($method as $m){
-            $methodString .= "Part ".$partCounter. $m;
-            $partCounter++;
-        }
         
         // Check if there is a card image file otherwise use the default
         if($request->file('cardImage')){
@@ -96,7 +90,7 @@ class RecipeController extends Controller
 
         $recipe = new recipes();
         $recipe->name = $title;
-        $recipe->method = $methodString;
+        $recipe->method = $method;
         $recipe->total_time = $total_time;
         $recipe->difficulty = $difficulty;
         $recipe->user_id = $userID;
