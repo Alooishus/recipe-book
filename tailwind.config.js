@@ -13,9 +13,6 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
                 playfair: ['Playfair Display'],
                 marker: ['Permanent Marker']
-            },
-            backgroundImage: {
-                'salt-banner': "url('/storage/Salt.jpg')"
             }
         },
     },

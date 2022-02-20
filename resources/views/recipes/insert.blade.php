@@ -81,7 +81,7 @@
                             <div class="flex space-x-1">
                                 <div class="">
                                     <label class="lbl">Quantity</label>
-                                    <input type="number" name="quantity[]" class="form-input w-1/2">
+                                    <input type="text" name="quantity[]" class="form-input w-1/2">
                                 </div>
                                 <div class="">
                                     <label class="lbl">Unit of Measurement</label>
@@ -102,7 +102,7 @@
                             <div id="methodParent">
                                 {{-- Style the method strings in RecipeController.php --}}
                                 <label class="lbl" for="method">Method:</label>
-                                <textarea class="form-input" name="method[]" id="" cols="100" rows="6" style="white-space: pre-wrap"></textarea>
+                                <textarea class="form-input" name="method" id="" cols="100" rows="6" style="white-space: pre-wrap"></textarea>
                             </div>
                             {{-- <div class="mt-4">
                                 <button class="btn-more ml-3" type="button" id="addMethod">+</button>
@@ -226,10 +226,10 @@ clickIngredient.addEventListener('click', function (event) {
                                         @endforeach
                                 </select>
                                 </div>
-                                <div class="flex space-x-1 mt-2 md:mt-0">
+                                <div class="flex space-x-1">
                                     <div>
                                         <label class="lbl">Quantity</label>
-                                        <input type="number" name="quantity[]" class="form-input">
+                                        <input type="text" name="quantity[]" class="form-input">
                                     </div>
                                     <div>
                                         <label class="lbl">Unit of Measurement</label>
